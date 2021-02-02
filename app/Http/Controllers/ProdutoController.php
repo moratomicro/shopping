@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Produto;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Auth;
 
 class ProdutoController extends Controller
 {
@@ -25,7 +26,10 @@ class ProdutoController extends Controller
         $title = 'Gerenciamento';
         $produtos = $this->produtos->paginate($this->totalPage);
         
-        return view('produto.listagem', compact('produtos', 'title'));
+        if(Auth::check() === true) {
+            return view('produto.listagem', compact('produtos', 'title'));
+        }
+        return redirect()->route('admin.login');
     }
 
     /**
@@ -37,7 +41,10 @@ class ProdutoController extends Controller
     {
         $title = 'Cadastrar Novo Produto';
 
-        return view('produto.formulario', compact('title'));
+        if(Auth::check() === true) {
+            return view('produto.formulario', compact('title'));
+        }
+        return redirect()->route('admin.login');
     }
 
     /**
@@ -76,11 +83,13 @@ class ProdutoController extends Controller
         $resposta = $this->produtos->find($id);
         $title = "Produto: {$resposta->nome}";
 
-        if(empty($resposta)){
-            return "Erro!! Cadastro não encontrado.";
+        if(Auth::check() === true) {
+            if(empty($resposta)){
+                return "Erro!! Cadastro não encontrado.";
+            }
+            return view('produto.detalhes', compact('resposta', 'title'));
         }
-
-        return view('produto.detalhes', compact('resposta', 'title'));
+        return redirect()->route('admin.login');
     }
 
     /**
@@ -94,7 +103,10 @@ class ProdutoController extends Controller
         $produto = $this->produtos->find($id);
         $title = "Editar Produto: {$produto->nome}";
 
+        if(Auth::check() === true) {
         return view('produto.formulario', compact('produto', 'title'));
+        }
+        return redirect()->route('admin.login');
     }
 
     /**
