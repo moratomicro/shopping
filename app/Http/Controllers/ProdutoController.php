@@ -81,7 +81,7 @@ class ProdutoController extends Controller
     public function show($id)
     {           
         $resposta = $this->produtos->find($id);
-        $title = "Produto: {$resposta->nome}";
+        $title = "Detalhe do Produto";
 
         if(Auth::check() === true) {
             if(empty($resposta)){
