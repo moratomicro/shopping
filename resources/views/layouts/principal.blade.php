@@ -39,8 +39,19 @@
 								<li><a href=""><i class="fa fa-user"></i> Account</a></li>
 								<li><a href=""><i class="fa fa-star"></i> Wishlist</a></li>
 								<li><a href="checkout.html"><i class="fa fa-crosshairs"></i> Checkout</a></li>
-								<li><a href="cart.html"><i class="fa fa-shopping-cart"></i> Cart</a></li>
+								<!--<li><a href="cart.html"><i class="fa fa-shopping-cart"></i> Cart</a></li>-->
 								<li><a href="{{ route('login') }}"><i class="fa fa-lock"></i> Login</a></li>
+								<li>									
+									<a class="dropdown-item" href="{{ route('logout') }}"
+										onclick="event.preventDefault();
+											document.getElementById('logout-form').submit();">
+										{{ __('Logout') }}
+									</a>
+
+									<form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+										@csrf
+									</form>									
+								</li>
 							</ul>
 						</div>
 					</div>
@@ -65,7 +76,7 @@
 								<li><a href="{{ route('produtos.index') }}" class="active">Home</a></li>
 								<li class="dropdown"><a href="#">Shop<i class="fa fa-angle-down"></i></a>
                                     <ul role="menu" class="sub-menu">
-                                        <li><a href="shop.html">Products</a></li>
+                                        <li><a href="{{ route('produtos.index') }}">Products</a></li>
 										<li><a href="{{ route('produtos.create') }}">Product New</a></li> 
 										<li><a href="checkout.html">Checkout</a></li> 
 										<li><a href="cart.html">Cart</a></li> 

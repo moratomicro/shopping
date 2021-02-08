@@ -14,7 +14,6 @@
         <tr>
             <th>NOME:</th>
             <th width="7%">VALOR:</th>
-            <th>DESCRIÇÃO:</th>
             <th>QTD:</th>
             <th>IMAGEM:</th>
             <th width="10%">AÇÃO</th>
@@ -23,7 +22,6 @@
         <tr class="{{$p->quantidade<=1 ? 'alert alert-danger' : ''}}">
             <td>{{ $p->nome }}</td>
             <td>R$ {{ $p->valor }}</td>
-            <td>{{ $p->descricao }}</td>
             <td>{{ $p->quantidade }}</td>
             <td>
                 @if ($p->imagem)
