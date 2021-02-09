@@ -25,7 +25,7 @@
             <td>{{ $p->quantidade }}</td>
             <td>
                 @if ($p->imagem)
-                    <img src="{{ url("storage/{$p->imagem}") }}" alt="{{ $p->nome }}" style="max-width: 50px;">
+                    <img src="{{ url("storage/{$p->imagem}") }}" alt="{{ $p->nome }}" style="width: 250px; height: 250px;">
                 @endif
             </td>
             <td align="center">
